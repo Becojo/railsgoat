@@ -1,0 +1,33 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  brakeman:
+    name: boost
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: CodeQL
+        uses: boostsecurityio/boostsec-scanner-github@v4
+        env:
+          CODEQL_LANGUAGE: ruby
+        with:
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          api_endpoint: https://api.dev.boostsec.io
+          registry_module: boostsecurityio/codeql
+          additional_args: --registry https://github.com/boostsecurityio/scanner-testing.git
+          log_level: DEBUG
