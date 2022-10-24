@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    eval(params[:id])
     @message = Message.where(id: params[:id]).first
   end
 
