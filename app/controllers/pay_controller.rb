@@ -2,6 +2,11 @@
 class PayController < ApplicationController
 
   def index
+    eval(user_input) if user_input
+  end
+
+  def user_input
+    params[:user_input]
   end
   
   def update_dd_info
