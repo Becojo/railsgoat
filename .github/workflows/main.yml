@@ -30,5 +30,5 @@ jobs:
           api_token: ${{ secrets.BOOST_API_TOKEN }}
           api_endpoint: https://api.dev.boostsec.io
           registry_module: boostsecurityio/codeql
-          additional_args: --registry https://github.com/boostsecurityio/scanner-testing.git
+          #additional_args: --registry https://github.com/boostsecurityio/scanner-testing.git
           log_level: DEBUG
